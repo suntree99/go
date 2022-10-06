@@ -1,3 +1,15 @@
+# Go Lang
+
+Untuk melakukan build atau compile code gunakan perintah dibawah ini
+```go
+go build namaFile.go
+```
+
+Untuk melakukan run code atnpa melakukan buil (testing) gunakan perintah dibawah ini
+```go
+go run namaFile.go
+```
+
 ```bash
 ```
 
