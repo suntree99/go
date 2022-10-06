@@ -1,3 +1,6 @@
+```bash
+```
+
 # Heading 1 / Judul Utama (gunakan #)
 
 ## Heading 2 / Sub Judul (gunakan ##)
