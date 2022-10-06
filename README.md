@@ -5,7 +5,7 @@ Untuk melakukan build atau compile code gunakan perintah dibawah ini
 go build namaFile.go
 ```
 
-Untuk melakukan run code atnpa melakukan buil (testing) gunakan perintah dibawah ini
+Untuk melakukan run code (testing) tanpa melakukan build gunakan perintah dibawah ini
 ```go
 go run namaFile.go
 ```
