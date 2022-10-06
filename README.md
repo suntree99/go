@@ -10,8 +10,8 @@ Untuk melakukan run code atnpa melakukan buil (testing) gunakan perintah dibawah
 go run namaFile.go
 ```
 
-#
-#
+##
+##
 
 # Heading 1 / Judul Utama (gunakan #)
 
