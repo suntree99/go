@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	var name string
 
 	name = "Budi"
@@ -26,4 +27,5 @@ func main() {
 	)
 	fmt.Println(firstName)
 	fmt.Println(lastName)
+	
 }

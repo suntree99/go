@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	type NoKTP string
 	type Married bool
 
@@ -10,4 +11,5 @@ func main() {
 	var marriedStatus Married = true
 	fmt.Println(noKtpBudi)
 	fmt.Println(marriedStatus)
+
 }
