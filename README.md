@@ -1,3 +1,18 @@
+# Go Lang
+
+Untuk melakukan build atau compile code gunakan perintah dibawah ini
+```go
+go build namaFile.go
+```
+
+Untuk melakukan run code (testing) tanpa melakukan build gunakan perintah dibawah ini
+```go
+go run namaFile.go
+```
+
+##
+##
+
 # Heading 1 / Judul Utama (gunakan #)
 
 ## Heading 2 / Sub Judul (gunakan ##)
