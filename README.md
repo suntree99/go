@@ -22,6 +22,19 @@ Untuk melakukan run code (testing) tanpa melakukan build gunakan perintah dibawa
 go run namaFile.go
 ```
 
+# Hello World
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	fmt.Println("Hello World")
+
+}
+```
+
 ##
 ##
 
