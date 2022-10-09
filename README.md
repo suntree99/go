@@ -340,7 +340,7 @@ func main() {
 	}
 ```
 
-## Counter
+## For Loops
 ```go
 	for counter := 1 ; counter <= 5 ; counter++ {
 		fmt.Println("perulangan ke", counter)
@@ -390,19 +390,65 @@ func main() {
 		fmt.Println(key, "=", value)
 	}
 	/*
-	title = Programmer
-	nama = Budi
+		title = Programmer
+		nama = Budi
 	*/
 ```
 
-## Judul
+## Break & Continue
 ```go
-	Isi
+	for i := 0; i < 10 ; i++ {
+		if i == 5 {
+			break
+		}
+		fmt.Println("Perulangan ke", i)
+	}
+	/*
+		Perulangan ke 0
+		Perulangan ke 1
+		Perulangan ke 2
+		Perulangan ke 3
+		Perulangan ke 4
+	*/
+
+	for i := 0; i < 10 ; i++ {
+		if i % 2 == 0 {
+			continue
+		}
+		fmt.Println("Perulangan ke", i)
+	}
+	/*
+		Perulangan ke 1
+		Perulangan ke 3
+		Perulangan ke 5
+		Perulangan ke 7
+		Perulangan ke 9
+	*/
 ```
 
-## Judul
+## Function
 ```go
-	Isi
+package main
+
+import "fmt"
+
+func sayHello() {
+	fmt.Println("Hello")
+}
+
+func main() {
+
+	sayHello()
+	sayHello()
+	sayHello()
+
+}
+
+	/*
+		Hello
+		Hello
+		Hello
+	*/
 ```
 
 ## Judul
