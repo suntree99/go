@@ -222,43 +222,187 @@ func main() {
 	}
 
 	var slice1 = month[4:7]
-	fmt.Println(slice1)
-	fmt.Println(len(slice1))
-	fmt.Println(cap(slice1))
+	fmt.Println(slice1) // [Mei Juni Juli]
+	fmt.Println(len(slice1)) // 3
+	fmt.Println(cap(slice1)) // 8
 
 	month[5] = "Diubah"
-	fmt.Println(slice1)
+	fmt.Println(slice1) // [Mei Diubah Juli]
 
 	slice1[0] = "Diganti"
-	fmt.Println(month)
+	fmt.Println(month) // [Januari Februari Maret April Diganti Diubah Juli Agustus September Oktober November Desember]
 
 	var slice2 = month[10:]
-	fmt.Println(slice2)
+	fmt.Println(slice2) // [November Desember]
 
 	var slice3 = append(slice2, "Tambah")
-	fmt.Println(slice3)
+	fmt.Println(slice3) // [November Desember Tambah]
 	
-	fmt.Println(slice2)
-	fmt.Println(month)
+	fmt.Println(slice2) // [November Desember]
+	fmt.Println(month) // [Januari Februari Maret April Diganti Diubah Juli Agustus September Oktober November Desember]
 
 	newSlice := make ([]string, 2, 5)
 
 	newSlice[0] = "Budi"
 	newSlice[1] = "Darmawan"
 
-	fmt.Println(newSlice)
-	fmt.Println(len(newSlice))
-	fmt.Println(cap(newSlice))
+	fmt.Println(newSlice) // [Budi Darmawan]
+	fmt.Println(len(newSlice)) // 2
+	fmt.Println(cap(newSlice)) // 5
 	
 	copySlice := make ([]string, len(newSlice), cap(newSlice))
 	copy(copySlice, newSlice)
-	fmt.Println(copySlice)
+	fmt.Println(copySlice) // [Budi Darmawan]
 
 	iniArray := [5]int {1, 2, 3, 4, 5}
 	iniSlice := []int {1, 2, 3, 4, 5}
 
-	fmt.Println(iniArray)
-	fmt.Println(iniSlice)
+	fmt.Println(iniArray) // [1 2 3 4 5]
+	fmt.Println(iniSlice) // [1 2 3 4 5]
+```
+
+## Map
+```go
+	person := map[string]string {
+		"name" : "Budi",
+		"address" : "Surabaya",
+	}
+
+	person["title"] = "Programmmer"
+
+	fmt.Println(person) // map[address:Surabaya name:Budi title:Programmmer]
+	fmt.Println(person["name"]) // Budi
+	fmt.Println(person["address"]) // Surabaya
+
+	var book map[string]string = make(map[string]string)
+	book["titile"] = "Belajar Go-Lang"
+	book["author"] = "Budi"
+	book["ups"] = "Salah"
+	fmt.Println(book) // map[author:Budi titile:Belajar Go-Lang ups:Salah]
+	fmt.Println(len(book)) // 3
+
+	delete(book, "ups")
+	fmt.Println(book) // map[author:Budi titile:Belajar Go-Lang]
+	fmt.Println(len(book)) // 2
+```
+
+## If Expression
+```go
+	var name = "Darmawan"
+
+	if name == "Budi" {
+		fmt.Println("Hello Budi")
+	} else if name == "Darmawan" {
+		fmt.Println("Hello Darmawan") // Hello Darmawan
+	} else {
+		fmt.Println("Hi, boleh kenalan?")
+	}
+
+	// short expression
+	if length := len(name) ; length > 5 {
+		fmt.Println("Terlalu panjang") // Terlalu panjang
+	} else {
+		fmt.Println("Nama sudah benar")
+	}
+
+```
+
+## Switch Expression
+```go
+	name := "Darmawan"
+
+	switch name {
+	case "Budi" :
+		fmt.Println("Hello Budi")
+	case "Darmawan" :
+		fmt.Println("Hello Darmawan") // Hello Darmawan
+	default :
+		fmt.Println("Hi, boleh kenalan?")
+	}
+
+	// short expression
+	switch length := len(name) ; length > 5 {
+	case true :
+		fmt.Println("Nama terlalu panjang") // Nama terlalu panjang
+	case false :
+		fmt.Println("Nama sudah benar")
+	}
+
+	// switch tanpa ekspresi (seperti if)
+	length := len(name)
+	switch {
+	case length > 10 :
+		fmt.Println("Nama terlalu panjang")
+	case length > 5 :
+		fmt.Println("Nama lumayan panjang") // Nama lumayan panjang
+	default :
+		fmt.Println("Nama sudah benar")
+	}
+```
+
+## Counter
+```go
+	for counter := 1 ; counter <= 5 ; counter++ {
+		fmt.Println("perulangan ke", counter)
+	}
+	/*
+		perulangan ke 1
+		perulangan ke 2
+		perulangan ke 3
+		perulangan ke 4
+		perulangan ke 5
+	*/
+
+	slice := []string {"Budi", "Darmawan", "Suntree"}
+	for i := 0 ; i < len(slice) ; i++ {
+		fmt.Println(slice[i])
+	}
+	/*
+		Budi
+		Darmawan
+		Suntree
+	*/
+		
+	for i, value := range slice {
+		fmt.Println("Index", i, "=", value)
+	}
+	/*
+		Index 0 = Budi
+		Index 1 = Darmawan
+		Index 2 = Suntree
+	*/
+	
+	// index yang tidak digunakan
+	for _, value := range slice {
+		fmt.Println(value)
+	}
+	/*
+		Budi
+		Darmawan
+		Suntree
+	*/
+	
+	person := make(map[string]string)
+	person["nama"] = "Budi"
+	person["title"] = "Programmer"
+
+	for key, value := range person {
+		fmt.Println(key, "=", value)
+	}
+	/*
+	title = Programmer
+	nama = Budi
+	*/
+```
+
+## Judul
+```go
+	Isi
+```
+
+## Judul
+```go
+	Isi
 ```
 
 ## Judul
