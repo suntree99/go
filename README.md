@@ -1093,40 +1093,362 @@ func main() {
 */
 ```
 
-## Judul
+## Package OS
 ```go
-	Isi
+import "os"
+import "fmt"
+
+func main() {
+
+	// Args
+	args := os.Args
+	fmt.Println("Arguments : ") // Arguments :
+	fmt.Println(args) // [C:\Users\Owner\AppData\Local\Temp\go-build2431035763\b001\exe\47_package-os.exe]
+
+	// Hostname
+	name, err := os.Hostname()
+	if err == nil {
+		fmt.Println("Hostname : ", name) // Hostname :  LAPTOP-XXXXX000
+	} else {
+		fmt.Println("Error ; ", err.Error())
+	}
+
+	// Environment variables
+	username := os.Getenv("APP_USERNAME")
+	password := os.Getenv("APP_PASSWORD")
+
+	fmt.Println(username)
+	fmt.Println(password)
+
+	// export APP_USERNAME=root
+	// export APP_PASSWORD=root
+
+}
 ```
 
-## Judul
+## Package Flag
 ```go
-	Isi
+import "flag"
+import "fmt"
+
+func main() {
+
+	var host *string = flag.String("host", "localhost", "Put your database host")
+	var username *string = flag.String("username", "root", "Put your database username")
+	var password *string = flag.String("password", "root", "Put your database password")
+	var number *int = flag.Int("number", 100, "Put your number")
+
+	flag.Parse() // untuk memparsing data masukan
+
+	fmt.Println("Host : ", *host) // Host :  localhost
+	fmt.Println("Username : ", *username) // Username :  root
+	fmt.Println("Password : ", *password) // Password :  root
+	fmt.Println("Number : ", *number) // Number :  100
+
+	// go run .\48_package-flag.go -username=budi -number=budi
+	// Akan menghasilkan error dan instruksi pengisian
+
+}
 ```
 
-## Judul
+## Package String
 ```go
-	Isi
+import "fmt"
+import "strings"
+
+func main() {
+
+	fmt.Println(strings.Contains("Budi Darmawan", "Budi")) // true
+	fmt.Println(strings.Contains("Budi Darmawan", "Iwan")) // false
+
+	fmt.Println(strings.Split("Budi Darmawan", " ")) // [Budi Darmawan]
+
+	fmt.Println(strings.ToLower("Budi Darmawan")) // budi darmawan
+	fmt.Println(strings.ToUpper("Budi Darmawan")) // BUDI DARMAWAN
+	fmt.Println(strings.ToTitle("Budi Darmawan")) // BUDI DARMAWAN
+
+	fmt.Println(strings.Trim("     Budi Darmawan     ", " ")) // Budi Darmawan
+
+	fmt.Println(strings.ReplaceAll("Budi Budi Budi Iwan Wati", "Budi", "Darmawan")) // Darmawan Darmawan Darmawan Iwan Wati
+
+}
 ```
 
-## Judul
+## Package Strconv
 ```go
-	Isi
+import "strconv"
+import "fmt"
+
+func main() {
+
+	// String to other type
+	boolean, err := strconv.ParseBool("true")
+	if err == nil {
+		fmt.Println(boolean) // true
+	} else {
+		fmt.Println(err.Error())
+	}
+
+	number, err := strconv.ParseInt("1000000", 10, 64)
+	if err == nil {
+		fmt.Println(number) // 1000000
+	} else {
+		fmt.Println(err.Error())
+	}
+	
+	valueInt, _ := strconv.Atoi("2000000")
+	fmt.Println(valueInt) // 2000000
+
+	// Other Type to string
+	value := strconv.FormatInt(1000000, 10)
+	fmt.Println(value) // 1000000
+
+	valueString := strconv.Itoa(45)
+	fmt.Println(valueString) // 45
+
+}
 ```
 
-## Judul
+## Package Math
 ```go
-	Isi
+import "math"
+import "fmt"
+
+func main() {
+
+	fmt.Println(math.Round(1.7)) // 2
+	fmt.Println(math.Round(1.3)) // 1
+	fmt.Println(math.Floor(1.7)) // 1
+	fmt.Println(math.Ceil(1.3)) // 2
+
+	fmt.Println(math.Max(10, 20)) // 20
+	fmt.Println(math.Min(10, 20)) // 10
+
+}
 ```
 
+## Package Container List
+```go
+import "container/list"
+import "fmt"
 
+func main() {
 
+	data := list.New()
 
+	data.PushBack("Budi")
+	data.PushBack("Darmawan")
+	data.PushFront("Suntree")
 
+	// menampilkan data pertama atau terakhir
+	fmt.Println(data.Front().Value) // Suntree
+	fmt.Println(data.Back().Value) // Darmawan
 
+	// menampilkan data ujung (nil)
+	fmt.Println(data.Front().Prev()) // <nil>
+	fmt.Println(data.Back().Next()) // <nil>
 
+	// dari depan ke belakang
+	for element := data.Front(); element != nil; element = element.Next() {
+		fmt.Println(element.Value)
+	}
+	/*
+		Suntree
+		Budi
+		Darmawan
+	*/
 
+	// dari belakang ke depan
+	for element := data.Back(); element != nil; element = element.Prev() {
+		fmt.Println(element.Value)
+	}
+	/*
+		Darmawan
+		Budi
+		Suntree
+	*/
+}
+```
 
+## Package Container Ring
+```go
+import "container/ring"
+import "strconv"
+import "fmt"
 
+func main() {
+
+	// var data *ring.Ring = ring.New(5)
+	data := ring.New(5)
+
+	// cara input manual
+	// data.Value = "Budi"
+	// var data2 = data.Next();
+	// data2.Value = "Darmawan"
+
+	// cara input dengan iterasi
+	for i := 0; i < data.Len(); i++ {
+		data.Value = "Data " + strconv.FormatInt(int64(i), 10)
+		data = data.Next()
+	}
+
+	// mencetak seluruh data ring
+	data.Do(func(value interface{}){
+		fmt.Println(value)
+	})
+	/*
+		Data 0
+		Data 1
+		Data 2
+		Data 3
+		Data 4
+	*/
+}
+```
+
+## Package Sort
+```go
+import "sort"
+import "fmt"
+
+type User struct {
+	Name string
+	Age int
+}
+
+// membuat struct menjadi array
+type UserSlice []User
+
+// membuat interface untuk Len()
+func (value UserSlice) Len() int {
+	return len(value)
+}
+
+// membuat interface untuk Less(i, j int)
+func (value UserSlice) Less(i, j int) bool {
+	return value[i].Age <  value[j].Age
+}
+
+// membuat interface untuk Swap(i, j int)
+func (value UserSlice) Swap(i, j int) {
+	value[i], value[j] = value[j], value[i]
+}
+
+func main() {
+
+	users := []User {
+		{"Budi", 30},
+		{"Iwan", 35},
+		{"Wati", 25},
+		{"Ani", 20},
+		{"Andi", 15},
+	}
+
+	sort.Sort(UserSlice(users))
+
+	fmt.Println(users) // [{Andi 15} {Ani 20} {Wati 25} {Budi 30} {Iwan 35}]
+
+}
+```
+
+## Package Time
+```go
+import "time"
+import "fmt"
+
+func main() {
+
+	// waktu saat ini
+	now := time.Now()
+
+	fmt.Println(now) // 2022-10-09 13:06:25.5383441 +0700 +07 m=+0.003744201
+	fmt.Println(now.Year()) // 2022
+	fmt.Println(now.Month()) // October
+	fmt.Println(now.Day()) // 9
+	fmt.Println(now.Hour()) // 13
+	fmt.Println(now.Minute()) // 6
+	fmt.Println(now.Second()) // 25
+	fmt.Println(now.Nanosecond()) // 538344100
+
+	// mengeset tanggal
+	utc := time.Date(2022, 10, 10, 10, 10, 10, 10, time.UTC)
+	fmt.Println(utc) // 2022-10-10 10:10:10.00000001 +0000 UTC
+
+	// parsing waktu
+	layout := "2006-01-02"
+	parse, _ := time.Parse(layout, "2020-10-01")
+	fmt.Println(parse) // 2020-10-01 00:00:00 +0000 UTC
+
+}
+```
+
+## Package Reflect
+```go
+import "reflect"
+import "fmt"
+
+type Sample struct {
+	Name string `required:"true" max:"10"`
+}
+
+type ContohLagi struct {
+	Name string `required="true"`
+	Description string
+}
+
+// fungsi untuk validasi
+func IsValid(data interface{}) bool {
+	t := reflect.TypeOf(data)
+	for i := 0; i < t.NumField(); i++ {
+		field := t.Field(i)
+		if field.Tag.Get("required") == "true" {
+			value := reflect.ValueOf(data).Field(i).Interface()
+			if value == "" {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func main() {
+
+	sample := Sample{"Budi"}
+
+	var sampleType = reflect.TypeOf(sample)
+
+	fmt.Println(sampleType.NumField()) // 1
+	fmt.Println(sampleType.Field(0).Name) // Name
+	fmt.Println(sampleType.Field(0).Tag.Get("required")) // true
+	fmt.Println(sampleType.Field(0).Tag.Get("max")) // 10
+	fmt.Println(sampleType.Field(0).Tag.Get("min")) // kososng karena tidak ada tag min
+
+	// contoh validasi
+	sample.Name = ""
+	fmt.Println(IsValid(sample)) // false
+
+	contoh := ContohLagi{"Budi", ""} // true karena tidak dipasang tag required
+	fmt.Println(IsValid(contoh)) // true
+	
+}
+```
+
+## Package Regexp
+```go
+import "regexp"
+import "fmt"
+
+func main() {
+
+	var regex *regexp.Regexp = regexp.MustCompile("e([a-z])a")
+	fmt.Println(regex.MatchString("eka")) // true
+	fmt.Println(regex.MatchString("eta")) // true
+	fmt.Println(regex.MatchString("eDa")) // false
+
+	search := regex.FindAllString("eka eko eda eta eya eki", -1)
+	fmt.Println(search) // [eka eda eta eya]
+}
+```
 
 ##
 ##
@@ -1146,5 +1468,10 @@ git push
 ```
 
 Untuk `menyoroti` bungkus text dengan backtick 1x
+
+## Package 
+```go
+Isi
+```
 
 Update README.md
