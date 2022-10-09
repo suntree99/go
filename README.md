@@ -22,7 +22,7 @@ Untuk melakukan run code (testing) tanpa melakukan build gunakan perintah dibawa
 go run namaFile.go
 ```
 
-# Hello World
+## Hello World
 ```go
 package main
 
@@ -34,6 +34,33 @@ func main() {
 
 }
 ```
+
+## Tipe Data
+- String
+```go
+	fmt.Println("Budi Darmawan")
+	fmt.Println(len("Budi Darmawan"))
+	fmt.Println("Budi Darmawan"[0])
+```
+- Angka
+```go
+	fmt.Println("Satu = ", 1)
+	fmt.Println("Tiga Koma Lima = ", 3.5)
+```
+- Boolean
+```go
+	fmt.Println("Benar = ", true)
+	fmt.Println("Salah = ", false)
+```
+
+## Variable
+- String
+```go
+	var name string
+	name = "Budi"
+	fmt.Println(name)
+```
+
 
 ##
 ##
