@@ -18,5 +18,4 @@ func main() {
 
 	fmt.Println(strings.ReplaceAll("Budi Budi Budi Iwan Wati", "Budi", "Darmawan"))
 
-
 }

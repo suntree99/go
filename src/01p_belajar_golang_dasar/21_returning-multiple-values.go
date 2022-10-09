@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func getFullName() (string, string, int) {
-	return "Budi", "Darmawan", 33
+	return "Budi", "Darmawan", 30
 }
 
 func main() {
@@ -16,4 +16,5 @@ func main() {
 	namaDepan, namaBelakang, _ := getFullName()
 	fmt.Println(namaDepan)
 	fmt.Println(namaBelakang)
+
 }

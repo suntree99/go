@@ -19,7 +19,6 @@ func main() {
 		fmt.Println("Value", value, "is int")
 	default :
 		fmt.Println("Unknown type")
-
 	}
 
 }

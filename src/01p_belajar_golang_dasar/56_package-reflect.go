@@ -45,4 +45,5 @@ func main() {
 
 	contoh := ContohLagi{"Budi", ""} // true karena tidak dipasang tag required
 	fmt.Println(IsValid(contoh))
+	
 }

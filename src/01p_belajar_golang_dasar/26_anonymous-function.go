@@ -20,9 +20,6 @@ func registerUser(name string, blacklist Blacklist) {
 // 	return name = "root"
 // }
 
-
-
-
 func main() {
 
 	blacklist := func(name string) bool {

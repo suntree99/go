@@ -13,7 +13,7 @@ func main() {
 	var budi Customer
 	budi.Name = "Budi Darmawan"
 	budi.Address = "Surabaya"
-	budi.Age = 33
+	budi.Age = 30
 
 	fmt.Println(budi)
 	fmt.Println(budi.Name)
@@ -30,7 +30,7 @@ func main() {
 
 	// Cara langsung
 	// tidak disarankan karena sangat tergantung urutan prototype
-	wati := Customer { "Wati", "Tangerang", 29 }
+	wati := Customer { "Wati", "Tangerang", 25 }
 	fmt.Println(wati)
 
 }
