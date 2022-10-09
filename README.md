@@ -150,15 +150,31 @@ func main() {
 	var name2 = "budi"
 
 	var result bool = name1 == name2
-	fmt.Println(result)
+	fmt.Println(result) // false
 
 	var value1 = 100
 	var value2 = 200
 
-	fmt.Println(value1 > value2)
-	fmt.Println(value1 < value2)
-	fmt.Println(value1 == value2)
-	fmt.Println(value1 != value2)
+	fmt.Println(value1 > value2) // false
+	fmt.Println(value1 < value2) // true
+	fmt.Println(value1 == value2) // false
+	fmt.Println(value1 != value2) // true
+```
+
+## Boolean Operator
+```go
+	var ujian = 80
+	var absensi = 75
+
+	var lulusUjian = ujian >= 80
+	var lulusAbsensi = absensi >= 80
+	fmt.Println(lulusUjian) // true
+	fmt.Println(lulusAbsensi) // false
+
+	var lulus = lulusUjian && lulusAbsensi
+	fmt.Println(lulus) // false
+
+	fmt.Println(ujian >= 80 && absensi >= 80) // false
 ```
 
 ## Judul
