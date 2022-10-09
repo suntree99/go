@@ -1,5 +1,16 @@
 # Go Lang
 
+## Instalasi
+- Download dan install Go Compiler di https://go.dev/
+- Cek di cmd : go version
+
+Pengaturan GoPath dan GoRoot
+- Buka Environment Variables
+- Pada User Variables buat GOPATH mengacu pada alamat workspace
+- Pada System Vaeriables buat GOROOT mengacu pada alamat instalasi
+- Cek go environment di cmd : go env
+- Ppastikan GO111MODULE=off : go env -w GO111MODULE=off 
+
 Untuk melakukan build atau compile code gunakan perintah dibawah ini
 ```go
 go build namaFile.go
@@ -28,3 +39,5 @@ git push
 ```
 
 Untuk `menyoroti` bungkus text dengan backtick 1x
+
+Update README.md
