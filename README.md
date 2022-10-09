@@ -1,24 +1,24 @@
-# Go Lang
+# GO Lang
 
 ## Instalasi
-- Download dan install Go Compiler di https://go.dev/
-- Cek di cmd : go version
+- Download dan install GO compiler di https://go.dev/
+- Cek status instalasi di cmd : `go version`
 
 Pengaturan GOPATH dan GOROOT
 - Buka Environment Variables
 - Pada User Variables, buat GOPATH mengacu pada alamat workspace
-- Pada System Vaeriables, buat GOROOT mengacu pada alamat instalasi
-- Cek go environment di cmd : go env
-- Pastikan GO111MODULE=off : go env -w GO111MODULE=off 
+- Pada System Variables, buat GOROOT mengacu pada alamat instalasi
+- Cek go environment di cmd : `go env`
+- Pastikan GO111MODULE=off : `go env -w GO111MODULE=off`
 
 ## Perintah Dasar
 Untuk melakukan build atau compile code gunakan perintah dibawah ini
-```go
+```cmd
 go build namaFile.go
 ```
 
 Untuk melakukan run code (testing) tanpa melakukan build gunakan perintah dibawah ini
-```go
+```cmd
 go run namaFile.go
 ```
 
@@ -38,19 +38,19 @@ func main() {
 ## Tipe Data
 - String
 ```go
-	fmt.Println("Budi Darmawan")
-	fmt.Println(len("Budi Darmawan"))
-	fmt.Println("Budi Darmawan"[0])
+	fmt.Println("Budi Darmawan") // Budi Darmawan
+	fmt.Println(len("Budi Darmawan")) // 13
+	fmt.Println("Budi Darmawan"[0]) // 66 (angka ASCII dari B)
 ```
 - Angka
 ```go
-	fmt.Println("Satu = ", 1)
-	fmt.Println("Tiga Koma Lima = ", 3.5)
+	fmt.Println("Satu = ", 1) // Satu =  1
+	fmt.Println("Tiga Koma Lima = ", 3.5) // Tiga Koma Lima =  3.5
 ```
 - Boolean
 ```go
-	fmt.Println("Benar = ", true)
-	fmt.Println("Salah = ", false)
+	fmt.Println("Benar = ", true) // Benar = true
+	fmt.Println("Salah = ", false) // Salah = false
 ```
 
 ## Variable
@@ -58,7 +58,7 @@ func main() {
 ```go
 	var name string
 	name = "Budi"
-	fmt.Println(name)
+	fmt.Println(name) // Budi
 ```
 
 
