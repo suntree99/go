@@ -438,23 +438,695 @@ func sayHello() {
 
 func main() {
 
-	sayHello()
-	sayHello()
-	sayHello()
+	sayHello() // Hello
+	sayHello() // Hello
+	sayHello() // Hello
+
+}
+```
+
+## Function Parameter
+```go
+func sayHelloTo(firstName string, lastName string) {
+	fmt.Println("Hello", firstName, lastName)
+}
+
+func main() {
+
+	firstName := "Budi"
+	sayHelloTo(firstName, "Darmawan") // Hello Budi Darmawan
+	sayHelloTo("Iwan", "Setiawan") // Hello Iwan Setiawan
+
+}
+```
+
+## Function Return Value
+```go
+func getHello(name string) string {
+	if name == "" {
+		return "Hello Bro"
+	} else {
+		return "Hello " + name
+	}
+}
+
+func main() {
+
+	result := getHello("Budi")
+	fmt.Println(result) // Hello Budi
+
+	fmt.Println(getHello("")) // Hello Bro
+
+}
+```
+
+## Returning Multiple Value
+```go
+func getFullName() (string, string, int) {
+	return "Budi", "Darmawan", 30
+}
+
+func main() {
+
+	firstName, lastName, age := getFullName()
+	fmt.Println(firstName) // Budi
+	fmt.Println(lastName) // Darmawan
+	fmt.Println(age) // 30
+
+	namaDepan, namaBelakang, _ := getFullName()
+	fmt.Println(namaDepan) // Budi
+	fmt.Println(namaBelakang) // Darmawan
+
+}
+```
+
+## Named Return Value
+```go
+func getFullName2() (firstName string, lastName string, age int) {
+	firstName = "Budi"
+	lastName = "Darmawan"
+	age = 33
+	return
+}
+
+func main() {
+
+	a, b, c := getFullName2()
+	fmt.Println(a) // Budi
+	fmt.Println(b) // Darmawan
+	fmt.Println(c) // 33
+
+}
+```
+
+## Variadic Function
+```go
+func sumAll(numbers ...int) int {
+	total := 0
+	for _, value := range numbers {
+		total += value
+	}
+	return total
+}
+
+func main() {
+
+	total := sumAll(10, 90, 30, 50, 40)
+	fmt.Println(total) // 220
+
+	slice := []int{10, 20, 30, 40 ,50}
+	total = sumAll(slice...)
+	fmt.Println(total) // 150
+	
+}
+```
+
+## Function as Value
+```go
+func getGoodBy(name string) string {
+	return "Good By " + name
+}
+
+func main() {
+
+	sayGoodBy := getGoodBy
+	result := sayGoodBy("Budi")
+	fmt.Println(result) // Good By Budi
+
+}
+```
+
+## Function as Parameter
+```go
+type Filter func(string) string
+
+func sayHelloWithFilter(name string, filter Filter) {
+	nameFiltered := filter(name)
+	fmt.Println("Hello " + nameFiltered)
+}
+
+func spamFilter(name string) string {
+	if name == "Anjing" {
+		return "..."
+	} else {
+		return name
+	}
+}
+
+func main() {
+
+	sayHelloWithFilter("Budi", spamFilter) // Hello Budi
+	sayHelloWithFilter("Anjing", spamFilter) // Hello ...
+
+}
+```
+
+## Anonymous Function
+```go
+type Blacklist func(string) bool
+
+func registerUser(name string, blacklist Blacklist) {
+	if blacklist(name) {
+		fmt.Println("You are blocked " + name)
+	} else {
+		fmt.Println("Welcome " + name)
+	}
+}
+
+func main() {
+
+	blacklist := func(name string) bool {
+		return name == "admin"
+	}
+	
+	registerUser("admin", blacklist) // You are blocked admin
+	registerUser("budi", blacklist) // Welcome budi
+
+	registerUser("root", func(name string) bool {
+		return name == "root"
+	})
+	// You are blocked root
+
+}
+```
+
+## Recursive Function
+```go
+func factorialLoop(value int) int {
+	result := 1
+	for i := value; i > 0; i-- {
+		result *= i
+	}
+
+	return result
+}
+
+func factorilaRecursive(value int) int {
+	if value == 1 {
+		return 1
+	} else {
+		return value * factorilaRecursive(value - 1)
+	}
+}
+
+func main() {
+
+	loop := factorialLoop(5)
+	fmt.Println(loop) // 120
+	fmt.Println(5*4*3*2*1) // 120
+
+	recursive := factorilaRecursive(5)
+	fmt.Println(recursive) // 120
+
+}
+```
+
+## Closures
+```go
+func main() {
+
+	name := "Budi"
+	counter := 0
+
+	increment := func() {
+
+		name = "Iwan"
+		fmt.Println("Increment")
+		counter++
+
+	}
+
+	increment() // Increment
+	increment() // Increment
+	fmt.Println(counter) // 2
+	fmt.Println(name) // Iwan
 
 }
 
-	/*
-		Hello
-		Hello
-		Hello
-	*/
+```
+
+## Defer in Function
+```go
+func logging() {
+	fmt.Println("Selesai memanggil function")
+}
+
+func runApplication(value int) {
+	defer logging() // tetap akan dieksekusi
+	fmt.Println("Run Appliaction") // dieksekusi
+	result := 10/value // error
+	fmt.Println("Result", result) // tidak dieksekusi
+}
+
+func main() {
+
+	runApplication(0)
+
+}
+/*
+	Run Appliaction
+	Selesai memanggil function
+	panic: runtime error: integer divide by zero
+*/
+```
+
+## Panic in Function
+```go
+func endApp() {
+	fmt.Println("Aplikasi selesai")
+}
+
+func runApp(error bool) {
+	defer endApp() // tetap akan dieksekusi
+	if error {
+		panic("APLIKASI ERROR") // panic message dieksekusi saat error
+	}
+	fmt.Println("Aplikasi berjalan") // tidak akan dieksekusi
+}
+
+func main() {
+
+	runApp(true)
+	fmt.Println("Program berjalan") // tidak akan dieksekusi saat terjadi error
+
+}
+/*
+	Aplikasi selesai
+	panic: APLIKASI ERROR
+*/
+```
+
+## Recovery in Function
+```go
+func endApp() {
+	message := recover() // untuk menangkap error dan tidak menghentikan program selanjutnya
+	if message != nil {
+		fmt.Println("Error dengan message", message)
+	}
+	fmt.Println("Aplikasi selesai")
+}
+
+func runApp(error bool) {
+	defer endApp()
+	if error {
+		panic("APLIKASI ERROR")
+	}
+	fmt.Println("Aplikasi berjalan")
+}
+
+func main() {
+
+	runApp(true)
+	fmt.Println("Program berjalan") // tetap di eksekusi karena panic telah di recover
+
+}
+/*
+	Error dengan message APLIKASI ERROR
+	Aplikasi selesai
+	Program berjalan
+*/
+```
+
+## Comment
+```go
+// ini komentar single line
+
+/**
+ini
+komentar
+multi
+lane
+*/
+```
+
+## Struct
+```go
+type Customer struct {
+	Name, Address string
+	Age int
+}
+
+func main() {
+
+	// Cara input property dengan (=)
+	var budi Customer
+	budi.Name = "Budi Darmawan"
+	budi.Address = "Surabaya"
+	budi.Age = 30
+
+	fmt.Println(budi) // {Budi Darmawan Surabaya 30}
+	fmt.Println(budi.Name) // Budi Darmawan
+	fmt.Println(budi.Address) // Surabaya
+	fmt.Println(budi.Age) // 30
+
+	// Cara key-value dengan (:)
+	iwan := Customer {
+		Name : "Iwan Setiawan",
+		Address : "Bandung",
+		Age : 35,
+	}
+	fmt.Println(iwan) // {Iwan Setiawan Bandung 35}
+
+	// Cara langsung
+	// tidak disarankan karena sangat tergantung urutan prototype
+	wati := Customer { "Wati", "Tangerang", 25 }
+	fmt.Println(wati) // {Wati Tangerang 25}
+
+}
+```
+
+## Struct Method
+```go
+type Customer struct {
+	Name, Address string
+	Age int
+}
+
+func (customer Customer) sayHi(name string) {
+	fmt.Println("Hello", name, "my name is", customer.Name)
+}
+
+func main() {
+
+	var budi Customer
+	budi.Name = "Budi Darmawan"
+	budi.Address = "Surabaya"
+	budi.Age = 33
+
+	budi.sayHi("Iwan") // Hello Iwan my name is Budi Darmawan
+
+}
+```
+
+## Interface
+```go
+type HasName interface {
+	GetName() string
+}
+
+func SayHello(hasName HasName)  {
+	fmt.Println("Hello", hasName.GetName())
+}
+
+// Person struct
+type Person struct {
+	Name string
+}
+
+func (person Person) GetName() string {
+	return person.Name
+}
+
+// Animal struct
+type Animal struct {
+	Name string
+}
+
+func (animal Animal) GetName() string {
+	return animal.Name
+}
+
+func main() {
+
+	var budi Person
+	budi.Name = "Budi Darmawan"
+
+	SayHello(budi) // Hello Budi Darmawan
+
+	cat := Animal {
+		Name : "Push",
+	}
+
+	SayHello(cat) // Hello Push
+
+}
+```
+
+## Interface Kosong
+```go
+func Ups(i int) interface {} {
+	if i == 1 {
+		return 1
+	} else if i == 2 {
+		return true
+	} else {
+		return "Ups"
+	}
+}
+
+func main() {
+
+	var data interface{} = Ups(1)
+	fmt.Println(data) // 1
+
+	data = Ups(2)
+	fmt.Println(data) // true
+
+	data = Ups(3)
+	fmt.Println(data) // Ups
+
+```
+
+## Nil
+```go
+func NewMap(name string) map[string]string {
+	if name == "" {
+		return nil
+	} else {
+		return map[string]string {
+			"name" : name,
+		}
+	}
+}
+
+func main() {
+
+	person := NewMap("Budi")
+	fmt.Println(person) // map[name:Budi]
+
+}
+```
+
+## Interface Error
+```go
+import "errors"
+import "fmt"
+
+func Pembagi(nilai int, pembagi int) (int, error) {
+	if pembagi == 0 {
+		return 0, errors.New("Pembagi tidak boleh 0")
+	} else {
+		result := nilai / pembagi
+		return result, nil
+	}
+}
+
+func main() {
+
+	hasil, err := Pembagi(100, 0)
+	if err == nil {
+		fmt.Println("Hasil", hasil)
+	} else {
+		fmt.Println("Error", err.Error()) // Error Pembagi tidak boleh 0
+	}
+
+}
+```
+
+
+## Type Assertions
+```go
+func random() interface{} {
+	return true
+}
+
+func main() {
+
+	var result interface{} = random()
+	// var resultString = result.(string)
+	// fmt.Println(resultString)
+
+	switch value := result.(type) {
+	case string :
+		fmt.Println("Value", value, "is string")
+	case int :
+		fmt.Println("Value", value, "is int")
+	default :
+		fmt.Println("Unknown type") // Unknown type
+	}
+
+}
+```
+
+## Pointer
+```go
+type Address struct {
+	City, Province, Country string
+}
+
+func main() {
+
+	// Pass by value
+	address1 := Address{"Bandung", "Jawa Barat", "Indonesia"}
+	address2 := address1
+	address2.City = "Subang" //? perubahan address2 TIDAK MENGUBAH reference (address1)
+
+	fmt.Println(address1) // {Bandung Jawa Barat Indonesia}
+	fmt.Println(address2) // {Subang Jawa Barat Indonesia}
+
+	// Pass by reference -> Pointer (&)
+	address3 := Address{"Surabaya", "Jawa Timur", "Indonesia"}
+	address4 := &address3
+	address4.City = "Lamongan" // perubahan address4 MENGUBAH reference (address3)
+
+	fmt.Println(address3) // {Lamongan Jawa Timur Indonesia}
+	fmt.Println(address4) // &{Lamongan Jawa Timur Indonesia}
+
+	// Assign nilai baru TIDAK MENGUBAH reference
+	address5 := Address{"Tangerang", "Banten", "Indonesia"}
+	address6 := &address5
+	address6 = &Address{"Yogyakarta", "DIY", "Indonesia"}
+
+	fmt.Println(address5) // {Tangerang Banten Indonesia}
+	fmt.Println(address6) // &{Yogyakarta DIY Indonesia}
+
+	// Assign nilai baru MENGUBAH reference dengan (*)
+	address7 := Address{"Pontianak", "Kalimantan Barat", "Indonesia"}
+	address8 := &address7
+	*address8 = Address{"Samarinda", "Kalimantan Timur", "Indonesia"}
+
+	fmt.Println(address7) // {Samarinda Kalimantan Timur Indonesia}
+	fmt.Println(address8) // &{Samarinda Kalimantan Timur Indonesia}
+
+	var address9 *Address = new(Address)
+	address9.City = "Jakarta"
+	fmt.Println(address9) // &{Jakarta  }
+	
+}
+```
+
+## Pointer in Function
+```go
+type Address struct {
+	City, Province, Country string
+}
+
+func ChangeCountryToINdonesia(address *Address) { // Tambahkan *
+	address.Country = "Indonesia"
+}
+
+func main() {
+
+	var address10 = Address {
+		City : "Subang",
+		Province : "Jawa Barat",
+		Country : "",
+	}
+
+	ChangeCountryToINdonesia(&address10) // Tambahkan &
+
+	fmt.Println(address10) // {Subang Jawa Barat Indonesia}
+	
+}
+```
+
+## Pointer in Method
+```go
+type Man struct {
+	Name string
+}
+
+func (man *Man) Merried() { // Tambahkan *
+	man.Name = "Mr. " + man.Name
+}
+
+func main() {
+
+	budi := Man{"Budi"}
+	budi.Merried()
+	fmt.Println(budi.Name) // Mr. Budi
+
+}
+```
+
+## Import
+```go
+import "01p_belajar_golang_dasar/helper"
+
+func main() {
+
+	helper.SayHello("Budi") // Hello Budi
+
+}
+```
+
+## Access Modifier
+```go
+import "01p_belajar_golang_dasar/helper"
+import "fmt"
+
+func main() {
+
+	helper.SayHello("Budi") // Hello Budi
+	// helper.sayGoodBye("Budi") // error
+	fmt.Println(helper.Application) // Belajar Golang Dasar
+	// fmt.Println(helper.version) // error
+
+}
+```
+
+## Package Initialization
+```go
+import "01p_belajar_golang_dasar/database"
+// import _ "01p_belajar_golang_dasar/database" // blank identifier (_)
+import "fmt"
+
+func main() {
+
+	result := database.GetDatabase()
+	fmt.Println(result)
+
+}
+/*
+	Init dipanggil
+	MySQL
+*/
 ```
 
 ## Judul
 ```go
 	Isi
 ```
+
+## Judul
+```go
+	Isi
+```
+
+## Judul
+```go
+	Isi
+```
+
+## Judul
+```go
+	Isi
+```
+
+## Judul
+```go
+	Isi
+```
+
+
+
+
+
+
+
+
+
+
 
 ##
 ##
