@@ -13,16 +13,16 @@ Pengaturan GOPATH dan GOROOT
 
 ## Basic Command
 Untuk melakukan build atau compile code gunakan perintah dibawah ini
-```cmd
+```go
 go build namaFile.go
 ```
 
 Untuk melakukan run code (testing) tanpa melakukan build gunakan perintah dibawah ini
-```cmd
+```go
 go run namaFile.go
 ```
 
-## Hello World
+## Hello World (Basic Structure)
 ```go
 package main
 
@@ -114,6 +114,56 @@ func main() {
 	var marriedStatus Married = true
 	fmt.Println(noKtpBudi) // 3603090710890001
 	fmt.Println(marriedStatus) // true
+```
+
+## Math Operation
+```go
+	var result = 10 + 10
+	fmt.Println(result) // 20
+
+	var a = 10
+	var b = 10
+	var c = a * b
+	fmt.Println(c) // 100
+
+	var i = 10
+	i += 10 // i = i + 10 
+	fmt.Println(i) // 20
+
+	i++
+	fmt.Println(i) // 21
+
+	var status = true
+	var notStatus = !status
+	fmt.Println(status) // true
+	fmt.Println(notStatus) // false
+
+	var negatif = -100
+	var positif = 100
+	fmt.Println(negatif) // -100
+	fmt.Println(positif) //100
+```
+
+## Comparation Operator
+```go
+	var name1 = "Budi"
+	var name2 = "budi"
+
+	var result bool = name1 == name2
+	fmt.Println(result)
+
+	var value1 = 100
+	var value2 = 200
+
+	fmt.Println(value1 > value2)
+	fmt.Println(value1 < value2)
+	fmt.Println(value1 == value2)
+	fmt.Println(value1 != value2)
+```
+
+## Judul
+```go
+	Isi
 ```
 
 ##
