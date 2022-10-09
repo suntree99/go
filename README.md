@@ -4,13 +4,14 @@
 - Download dan install Go Compiler di https://go.dev/
 - Cek di cmd : go version
 
-Pengaturan GoPath dan GoRoot
+Pengaturan GOPATH dan GOROOT
 - Buka Environment Variables
-- Pada User Variables buat GOPATH mengacu pada alamat workspace
-- Pada System Vaeriables buat GOROOT mengacu pada alamat instalasi
+- Pada User Variables, buat GOPATH mengacu pada alamat workspace
+- Pada System Vaeriables, buat GOROOT mengacu pada alamat instalasi
 - Cek go environment di cmd : go env
-- Ppastikan GO111MODULE=off : go env -w GO111MODULE=off 
+- Pastikan GO111MODULE=off : go env -w GO111MODULE=off 
 
+## Perintah Dasar
 Untuk melakukan build atau compile code gunakan perintah dibawah ini
 ```go
 go build namaFile.go
