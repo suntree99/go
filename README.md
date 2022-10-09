@@ -42,7 +42,7 @@ func main() {
 	fmt.Println(len("Budi Darmawan")) // 13
 	fmt.Println("Budi Darmawan"[0]) // 66 (angka ASCII dari B)
 ```
-- Angka
+- Number
 ```go
 	fmt.Println("Integer =", 1) // Integer =  1
 	fmt.Println("Float =", 3.5) // Float =  3.5
@@ -175,6 +175,90 @@ func main() {
 	fmt.Println(lulus) // false
 
 	fmt.Println(ujian >= 80 && absensi >= 80) // false
+```
+
+## Array
+```go
+	var names [3]string
+
+	names[0] = "Budi"
+	names[1] = "Darmawan"
+	names[2] = "Suntree"
+
+	fmt.Println(names[0]) // Budi
+	fmt.Println(names[1]) // Darmawan
+	fmt.Println(names[2]) // Suntree
+
+	var value = [3]int {
+		90,
+		95,
+		80,
+	}
+
+	fmt.Println(value) // [90 95 80]
+
+	var lagi [10]string
+	
+	fmt.Println(len(names)) // 3
+	fmt.Println(len(value)) // 3
+	fmt.Println(len(lagi)) // 10
+```
+
+## Slice
+```go
+	var month = [...]string {
+		"Januari",
+		"Februari",
+		"Maret",
+		"April",
+		"Mei",
+		"Juni",
+		"Juli",
+		"Agustus",
+		"September",
+		"Oktober",
+		"November",
+		"Desember",
+	}
+
+	var slice1 = month[4:7]
+	fmt.Println(slice1)
+	fmt.Println(len(slice1))
+	fmt.Println(cap(slice1))
+
+	month[5] = "Diubah"
+	fmt.Println(slice1)
+
+	slice1[0] = "Diganti"
+	fmt.Println(month)
+
+	var slice2 = month[10:]
+	fmt.Println(slice2)
+
+	var slice3 = append(slice2, "Tambah")
+	fmt.Println(slice3)
+	
+	fmt.Println(slice2)
+	fmt.Println(month)
+
+	newSlice := make ([]string, 2, 5)
+
+	newSlice[0] = "Budi"
+	newSlice[1] = "Darmawan"
+
+	fmt.Println(newSlice)
+	fmt.Println(len(newSlice))
+	fmt.Println(cap(newSlice))
+	
+	copySlice := make ([]string, len(newSlice), cap(newSlice))
+	copy(copySlice, newSlice)
+	fmt.Println(copySlice)
+
+	iniArray := [5]int {1, 2, 3, 4, 5}
+	iniSlice := []int {1, 2, 3, 4, 5}
+
+	fmt.Println(iniArray)
+	fmt.Println(iniSlice)
 ```
 
 ## Judul
