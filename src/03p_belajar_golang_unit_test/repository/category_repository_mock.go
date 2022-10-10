@@ -1,7 +1,10 @@
 package repository
 
-import "github.com/stretchr/testify/mock"
-import "03p_belajar_golang_unit_test/entity"
+import (
+	"belajar-golang-unit-test/entity"
+
+	"github.com/stretchr/testify/mock"
+)
 
 type CategoryRepositoryMock struct {
 	Mock mock.Mock

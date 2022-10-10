@@ -1,8 +1,8 @@
 package service
 
 import (
-	"03p_belajar_golang_unit_test/entity"
-	"03p_belajar_golang_unit_test/repository"
+	"belajar-golang-unit-test/entity"
+	"belajar-golang-unit-test/repository"
 	"errors"
 )
 

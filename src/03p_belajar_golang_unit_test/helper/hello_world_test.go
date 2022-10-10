@@ -1,27 +1,43 @@
 package helper
 
-import "testing"
-import "github.com/stretchr/testify/assert"
-import "github.com/stretchr/testify/require"
-import "runtime"
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+)
+
+// Benchmark
+func BenchmarkHelloWorld(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Budi")
+	}
+}
+
+func BenchmarkHelloWorldDarmawan(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Darmawan")
+	}
+}
 
 // Table Test
 func TestTableHelloWorld(t *testing.T) {
 	tests := []struct {
-		name string
-		request string
+		name     string
+		request  string
 		expected string
 	}{
 		{
-			name:		"Budi",
-			request:	"Budi",
-			expected:	"Hello Budi",
+			name:     "Budi",
+			request:  "Budi",
+			expected: "Hello Budi",
 		},
 		{
-			name:		"Darmawan",
-			request:	"Darmawan",
-			expected:	"Hello Darmawan",
+			name:     "Darmawan",
+			request:  "Darmawan",
+			expected: "Hello Darmawan",
 		},
 	}
 
@@ -46,7 +62,7 @@ func TestSubTest(t *testing.T) {
 }
 
 // Main Test (before dan after unit test)
-func TestMain (m *testing.M) {
+func TestMain(m *testing.M) {
 	// before unit test
 	fmt.Println("BEFORE UNIT TEST")
 
@@ -70,14 +86,14 @@ func TestSkip(t *testing.T) {
 func TestHelloWorldAssert(t *testing.T) {
 	result := HelloWorld("Budi")
 	assert.Equal(t, "Hello Budi", result, "Result must be 'Hello Budi'") // memanggil Fail()
-	fmt.Println("TestHelloWorld with Assert Done") // akan dieksekusi jika ada error
+	fmt.Println("TestHelloWorld with Assert Done")                       // akan dieksekusi jika ada error
 }
 
 // Cara lebih mudah menggunakan library testify/require (recommended)
 func TestHelloWorldRequire(t *testing.T) {
 	result := HelloWorld("Budi")
 	require.Equal(t, "Hello Budi", result, "Result must be 'Hello Budi'") // memanggil FailNow()
-	fmt.Println("TestHelloWorld with Require Done") // tidak akan dieksekusi jika ada error
+	fmt.Println("TestHelloWorld with Require Done")                       // tidak akan dieksekusi jika ada error
 }
 
 // Cara manual menggunakan if else (not recommended)
