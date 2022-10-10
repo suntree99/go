@@ -1,8 +1,10 @@
 package service
 
-import "03p_belajar_golang_unit_test/repository"
-import "03p_belajar_golang_unit_test/entity"
-import "errors"
+import (
+	"03p_belajar_golang_unit_test/entity"
+	"03p_belajar_golang_unit_test/repository"
+	"errors"
+)
 
 type CategoryService struct {
 	Repository repository.CategoryRepository
