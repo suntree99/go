@@ -9,8 +9,47 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// Table Benchmark
+func BenchmarkTable(b *testing.B) {
+	benchmarks := []struct {
+		name    string
+		request string
+	}{
+		{
+			name:    "Budi",
+			request: "Budi",
+		},
+		{
+			name:    "Darmawan",
+			request: "Darmawan",
+		},
+	}
+
+	for _, benchmark := range benchmarks {
+		b.Run(benchmark.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWorld(benchmark.request)
+			}
+		})
+	}
+}
+
+// Sub Benchmark
+func BenchmarkSub(b *testing.B) {
+	b.Run("Budi", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Budi")
+		}
+	})
+	b.Run("Darmawan", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Darmawan")
+		}
+	})
+}
+
 // Benchmark
-func BenchmarkHelloWorld(b *testing.B) {
+func BenchmarkHelloWorldBudi(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		HelloWorld("Budi")
 	}
@@ -120,6 +159,6 @@ func TestHelloWorldDarmawan(t *testing.T) {
 		// t.FailNow() // tidak memberikan informasi error, perintah selanjutnya TIDAK dieksekusi
 		t.Fatal("Result must be 'Hello Darmawan'")
 	}
-	fmt.Println("TestHelloWorld Done")
+	fmt.Println("TestHelloWorldDarmawan Done")
 
 }
