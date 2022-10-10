@@ -9,7 +9,7 @@ Pengaturan GOPATH dan GOROOT
 - Pada User Variables, buat GOPATH mengacu pada alamat workspace
 - Pada System Variables, buat GOROOT mengacu pada alamat instalasi
 - Cek go environment di cmd : `go env`
-- Pastikan GO111MODULE=off : `go env -w GO111MODULE=off`
+- Pastikan GO111MODULE=off : `go env -w GO111MODULE="off"`
 
 ## Basic Command
 Untuk melakukan build atau compile code gunakan perintah dibawah ini
