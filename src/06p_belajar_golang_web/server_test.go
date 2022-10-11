@@ -1,13 +1,13 @@
 package belajar_golang_web
 
-import {
+import (
 	"net/http"
 	"testing"
-}
+)
 
 func TestServer(t *testing.T) {
 	server := http.Server{
-		Addr: "localhost:8080",
+		Addr: "localhost:9090",
 	}
 
 	err := server.ListenAndServe()
