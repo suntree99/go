@@ -1469,9 +1469,14 @@ git push
 
 Untuk `menyoroti` bungkus text dengan backtick 1x
 
-## Package 
-```go
-Isi
+# Template
+
+## Sub Judul 
+```<bahasa>
+git add .
+git commit -m 'Update README.md'
+git push
+
 ```
 
 Update README.md
